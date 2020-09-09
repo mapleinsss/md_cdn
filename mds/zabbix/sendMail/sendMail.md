@@ -1,4 +1,4 @@
-<div class="note inf">本文使用的 Zabbix 版本为 4.4.10，Smtp服务器为 163 邮箱</div>
+<div class="note inf">本文使用的 Zabbix 版本为 4.4.10，Smtp 服务器为 163 邮箱</div>
 
 ### I 配置 Mail
 
@@ -78,11 +78,11 @@
 
    这里告警动作使用的触发器为 1 分钟 cpu 负载超过 30%。
 
-   - 解释：触发器会监控某个指标，当数值超过该指标，那么触发器触发。如果在动作里配置了该触发器，那么触发器就会触发该动作的发生，然后我们就可以使用上面配置的脚本发送邮件了！
+   - 解释：触发器会监控某个指标，当数值超过该指标，触发器触发。如果在动作里配置了该触发器，那么触发器就会触发该动作的发生，动作可以定义发送邮件或其他操作。
 
    下图可以看到动作后面有三种操作类型：
 
-   - 操作：动作触发时执行；
+   - 操作：触发器触发时执行；
    
    - 恢复操作：触发器监控指标恢复正常时执行；
 
@@ -108,14 +108,14 @@
      问题详情:  {ITEM.NAME}:{ITEM.VALUE}
      当前状态:  {TRIGGER.STATUS}
      
-  Original problem ID: {TRIGGER.ID}
+     Original problem ID: {TRIGGER.ID}
      ```
-
+     
    - 细节内容则是配置持续时间，操作类型和接收告警的人等
    
      ![](https://cdn.jsdelivr.net/gh/mapleinsss/md_cdn@master/mds/zabbix/sendMail/5.png)
-   
-   ​	
+
+
 
 ### III 测试
 
