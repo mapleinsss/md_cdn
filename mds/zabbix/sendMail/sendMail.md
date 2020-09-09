@@ -1,8 +1,6 @@
-```
-<div class="note inf">本文使用的 Zabbix 版本为 `4.4.10`，Smtp服务器为 `163` 邮箱</div>
-```
+<div class="note inf">本文使用的 Zabbix 版本为 4.4.10，Smtp服务器为 163 邮箱</div>
 
-### 配置 Mail
+### I 配置 Mail
 
 1. 安装 `mailx`
 
@@ -30,7 +28,7 @@
 
    `echo "agent down" | mail -s "test mail" ***@qq.com`
 
-### 配置 Zabbix
+### II 配置 Zabbix
 
 1. 编写脚本
 
@@ -56,17 +54,19 @@
    chmod 777 sendmail.sh
    ```
 
+   
+
 2. 配置 zabbix 媒介类型
 
    选择脚本类型并引用刚才的脚本，下图中的参数作为测试使用
 
    ![](https://cdn.jsdelivr.net/gh/mapleinsss/md_cdn@master/mds/zabbix/sendMail/1.png)
 
+   配置完成后，点击更新后执行测试，如果发送成功，说明脚本配置成功。测试完成后，删除脚本参数，添加新参数，分别对应脚本中的三个参数
 
+   ![](https://cdn.jsdelivr.net/gh/mapleinsss/md_cdn@master/mds/zabbix/sendMail/2.png)
 
-​		配置完成后，点击更新后执行测试，如果发送成功，说明脚本配置成功。测试完成后，删除脚本参数，添加新参数，分别对应脚本中的三个参数
-
-![](https://cdn.jsdelivr.net/gh/mapleinsss/md_cdn@master/mds/zabbix/sendMail/2.png)
+   
 
 3. 配置报警媒介用户
 
@@ -83,17 +83,19 @@
    下图可以看到动作后面有三种操作类型：
 
    - 操作：动作触发时执行；
+   
    - 恢复操作：触发器监控指标恢复正常时执行；
+
    - 更新操作：问题发生更新时执行；
 
-   ![](https://cdn.jsdelivr.net/gh/mapleinsss/md_cdn@master/mds/zabbix/sendMail/4.png)
+     ![](https://cdn.jsdelivr.net/gh/mapleinsss/md_cdn@master/mds/zabbix/sendMail/4.png)
 
    这里只对操作进行配置，后面两个操作基本一样：
 
    - 操作持续时间 1h，代表在一小时会发送一次邮件出去
 
    - 标题和内容的表达式，可以去网上找，下面给一个例子
-
+   
      ```
      Problem ! CPU Average GT 30%: [{HOSTNAME1}]:{TRIGGER.NAME}
      
@@ -106,14 +108,16 @@
      问题详情:  {ITEM.NAME}:{ITEM.VALUE}
      当前状态:  {TRIGGER.STATUS}
      
-     Original problem ID: {TRIGGER.ID}
+  Original problem ID: {TRIGGER.ID}
      ```
 
    - 细节内容则是配置持续时间，操作类型和接收告警的人等
+   
+     ![](https://cdn.jsdelivr.net/gh/mapleinsss/md_cdn@master/mds/zabbix/sendMail/5.png)
+   
+   ​	
 
-   ​	![](https://cdn.jsdelivr.net/gh/mapleinsss/md_cdn@master/mds/zabbix/sendMail/5.png)
-
-### 测试
+### III 测试
 
 下面将进行测试，验证之前的配置。
 
@@ -127,17 +131,19 @@
 
    ![](https://cdn.jsdelivr.net/gh/mapleinsss/md_cdn@master/mds/zabbix/sendMail/6.png)
 
-3. 结束掉之前跑 cpu 的命令后，过一会后会收到恢复邮件
+3. 结束掉之前跑 cpu 的命令
 
    ```shell
    pkill -9 dd
    ```
 
-   
+4. 等待一分钟，会收到恢复的邮件
 
    ![](https://cdn.jsdelivr.net/gh/mapleinsss/md_cdn@master/mds/zabbix/sendMail/7.png)
 
-### 总结
+   
+
+### IV 总结
 
 通过对 Zabbix 配置，实现了当触发器触发时执行发送邮件的动作，对系统运维人员进行通知，从而第一时间对系统问题进行排查和修复。
 
