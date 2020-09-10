@@ -96,7 +96,7 @@
 
    - 标题和内容的表达式，可以去网上找，下面给一个例子
    
-     ```
+     ```text
      Problem ! CPU Average GT 30%: [{HOSTNAME1}]:{TRIGGER.NAME}
      
      告警时间:  {EVENT.DATE} {EVENT.TIME}
