@@ -107,10 +107,8 @@
      
      问题详情:  {ITEM.NAME}:{ITEM.VALUE}
      当前状态:  {TRIGGER.STATUS}
-     
      Original problem ID: {TRIGGER.ID}
      ```
-     
    - 细节内容则是配置持续时间，操作类型和接收告警的人等
    
      ![](https://cdn.jsdelivr.net/gh/mapleinsss/md_cdn@master/mds/zabbix/sendMail/5.png)
